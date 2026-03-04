@@ -1,0 +1,22 @@
+<?php
+/**
+ * Copia este archivo como config.local.php y completa con tus credenciales reales.
+ * NUNCA subas config.local.php a Git.
+ */
+return [
+    // Base de datos
+    'db_host'   => 'localhost',
+    'db_name'   => 'TU_BASE_DE_DATOS',
+    'db_user'   => 'TU_USUARIO_DB',
+    'db_pass'   => 'TU_CONTRASEÑA_DB',
+    'db_charset'=> 'utf8mb4',
+
+    // SMTP (correo)
+    'smtp_host' => 'smtp.office365.com',
+    'smtp_port' => 587,
+    'smtp_user' => 'tu_email@ejemplo.com',
+    'smtp_pass' => 'tu_contraseña_o_app_password',
+
+    // API key para suscripciones JSON
+    'api_key_suscriptions' => 'genera_una_clave_segura_aleatoria',
+];

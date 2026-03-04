@@ -1,15 +1,13 @@
 <?php
 header('Content-Type: application/json');
 
-// Verifica la clave de seguridad
-if (!isset($_GET['key']) || $_GET['key'] !== 'relatic2025json') {
+require_once __DIR__ . '/config.php';
+// Verifica la clave de seguridad desde config.local.php
+if (!isset($_GET['key']) || $_GET['key'] !== $api_key_suscriptions || empty($api_key_suscriptions)) {
     http_response_code(403);
     echo json_encode(['error' => 'Acceso denegado']);
     exit;
 }
-
-// Conexión con PDO
-require_once 'config.php'; // Este archivo ya define $pdo
 
 try {
     $stmt = $pdo->query("SELECT * FROM suscriptions");

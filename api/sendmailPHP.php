@@ -15,8 +15,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 
 $response = ['success' => false, 'message' => 'Error al enviar el correo.'];
 
-// Cargar Composer autoload
-require __DIR__ . '/../vendor/autoload.php'; // Ajusta si tu sendmailPHP.php está en otra carpeta
+// Cargar Composer autoload y configuración (credenciales SMTP en config.local.php)
+require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/config.php';
 
 // Obtener datos POST
 $input = file_get_contents('php://input');
@@ -46,17 +47,17 @@ if (empty($email)) {
 $mail = new PHPMailer(true);
 
 try {
-    // Configuración del servidor SMTP de Outlook
+    // Configuración SMTP desde config.local.php
     $mail->isSMTP();
-    $mail->Host       = 'smtp.office365.com';  // Servidor SMTP de Outlook
+    $mail->Host       = $smtp_host;
     $mail->SMTPAuth   = true;
-    $mail->Username   = 'desarrolloyoperaciones@relaticpanama.org'; // Tu correo Outlook
-    $mail->Password   = 'Mmmacarr3010*';          // Tu contraseña o App Password si 2FA activado
+    $mail->Username   = $smtp_user;
+    $mail->Password   = $smtp_pass;
     $mail->SMTPSecure = 'STARTTLS';
-    $mail->Port       = 587;
+    $mail->Port       = $smtp_port;
 
     // Remitente y destinatario
-    $mail->setFrom('desarrolloyoperaciones@relaticpanama.org', 'Relatic Panamá');
+    $mail->setFrom($smtp_user, 'Relatic Panamá');
     $mail->addAddress($email);
 
     // Contenido del correo

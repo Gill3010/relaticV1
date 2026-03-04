@@ -51,13 +51,8 @@ if (!empty($errors)) {
     exit;
 }
 
-// Lógica de Conexión y Búsqueda de Usuario en la Base de Datos
-$servername = "localhost";
-$dbusername = "Forms25";
-$dbpassword = "Forms.2025";
-$dbname = "Forms";
-
-$conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
+require_once __DIR__ . '/config.php';
+$conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
 
 if ($conn->connect_error) {
     http_response_code(500);

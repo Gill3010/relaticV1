@@ -1,0 +1,12 @@
+# Credenciales - NUNCA subir
+api/config.local.php
+
+# Logs con datos sensibles
+api/error_log
+*.log
+
+# Entorno / IDE
+.env
+.env.local
+.idea/
+.vscode/
